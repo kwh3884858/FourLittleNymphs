@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1005863796157600708, guid: 7908812d8fc7d5c44bb51bfc39227519,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -1005863796157600708, guid: 7908812d8fc7d5c44bb51bfc39227519,
+        type: 3}
     - target: {fileID: 7305888256925892197, guid: 7908812d8fc7d5c44bb51bfc39227519,
         type: 3}
       propertyPath: m_RootOrder
@@ -72,6 +78,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7305888256926016687, guid: 7908812d8fc7d5c44bb51bfc39227519,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b875b47af7294a4c87e182edb062ee9,
+        type: 2}
     - target: {fileID: 7305888256929283653, guid: 7908812d8fc7d5c44bb51bfc39227519,
         type: 3}
       propertyPath: m_Mesh
