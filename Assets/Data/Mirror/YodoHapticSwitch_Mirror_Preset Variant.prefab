@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3364575612624452312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 191828230152855977, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.418
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 881766740108563451, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302298483010273944, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_Name
+      value: YodoHapticSwitch_Mirror_Preset
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438321845895192570, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6438321845895192570, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+    - target: {fileID: 8285399122551772936, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.311
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285399122551772936, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285399122552261486, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b875b47af7294a4c87e182edb062ee9,
+        type: 2}
+    - target: {fileID: 9092451793965113625, guid: 5a787fee6182f954e9b71d217328e643,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.57
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a787fee6182f954e9b71d217328e643, type: 3}
