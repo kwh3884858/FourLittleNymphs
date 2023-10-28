@@ -9,22 +9,29 @@ using VRC.Udon;
 
 public class VoiceBooster : UdonSharpBehaviour
 {
-    public float m_boosterRadius = 5.0f;
+    //public float m_boosterRadius = 5.0f;
     //public SphereCollider m_boosterArea = null;
-    [Tooltip("This one need to set as player layer")]
-    public LayerMask m_areaLayerMask;
 
-    //public VRCPlayerApi[] m_allPlayers = new VRCPlayerApi[80];
+    [Tooltip("Is Turn On The Booster")]
+    [SerializeField]
+    private bool m_currentBoosterState = false;
 
-    [UdonSynced]
-    private string _json;
-    //private DataList _list;
+    //[UdonSynced]
+    [SerializeField]
+    private DataList m_currentControlledPlayerID = new DataList();
+
+    [SerializeField]
+    [UdonSynced] private string _json;
+
+    [SerializeField]
+    VRCPlayerApi[] players = new VRCPlayerApi[80];
 
     public override void OnPreSerialization()
     {
         if (VRCJson.TrySerializeToJson(m_currentControlledPlayerID, JsonExportType.Minify, out DataToken result))
         {
             _json = result.String;
+            Debug.Log(_json);
         }
         else
         {
@@ -34,6 +41,8 @@ public class VoiceBooster : UdonSharpBehaviour
 
     public override void OnDeserialization()
     {
+        Debug.Log("received");
+
         if (VRCJson.TryDeserializeFromJson(_json, out DataToken result))
         {
             m_currentControlledPlayerID = result.DataList;
@@ -44,99 +53,108 @@ public class VoiceBooster : UdonSharpBehaviour
         }
     }
 
-    //[UdonSynced]
-    private DataList m_currentControlledPlayerID = new DataList();
-
-    public void DoYodo_HapticSwitchOn()
+    public void Yodo_HapticSwitchOn()
     {
-        SetupPlayersVoice(true);
+        m_currentBoosterState = true;
+        SetControlledPlayersVoiceBooster(true);
     }
 
-    public void DoYodo_HapticSwitchOff()
+    public void Yodo_HapticSwitchOff()
     {
-        CloseAllPlayersVoice();
+        m_currentBoosterState = false;
+        DisableAllPlayersVoiceBoost();
     }
 
-    private void SetupPlayersVoice(bool isTurnOnBooster)
+    private void SetControlledPlayersVoiceBooster(bool isTurnOnBooster)
     {
         for (int i = 0; i < m_currentControlledPlayerID.Count; i++)
         {
             m_currentControlledPlayerID.TryGetValue(i, out DataToken playerVaule);
-            //Assert.IsTrue(,
-            //    $"Attempting to get value {i}, hit {playerVaule.Error}");
             if (playerVaule.TokenType == TokenType.Int)
             {
                 int playerID = (int)playerVaule;
                 VRCPlayerApi player = VRCPlayerApi.GetPlayerById(playerID);
-                if (isTurnOnBooster)
-                {
-                    player.SetAvatarAudioGain(40);
-                    player.SetAvatarAudioFarRadius(10000);
-                }
-                else
-                {
-                    player.SetAvatarAudioGain(10);
-                    player.SetAvatarAudioFarRadius(25);
-                }
+
+                SetPlayerVoice(player, isTurnOnBooster);
             }
         }
 
     }
 
-    private void CloseAllPlayersVoice()
+    private void DisableAllPlayersVoiceBoost()
     {
-        //VRCPlayerApi.GetPlayers(m_allPlayers);
+        VRCPlayerApi.GetPlayers(players);
         for (int i = 0; i < VRCPlayerApi.GetPlayerCount(); i++)
         {
-            VRCPlayerApi player = VRCPlayerApi.GetPlayerById(i);
-            player.SetAvatarAudioGain(10);
-            player.SetAvatarAudioFarRadius(25);
+            VRCPlayerApi player = players[i];
+            if (player.IsValid())
+            {
+                SetPlayerVoice(player, false);
+            }
         }
     }
 
     public override void OnPlayerTriggerEnter(VRCPlayerApi player)
     {
-        Debug.Log(gameObject.activeInHierarchy);
         base.OnPlayerTriggerEnter(player);
         int playerID = player.playerId;
-        if (m_currentControlledPlayerID.Contains(playerID))
+        if (!m_currentControlledPlayerID.Contains(playerID))
         {
-
             m_currentControlledPlayerID.Add(playerID);
+        }
+        if (m_currentBoosterState)
+        {
+            SetPlayerVoice(player, true);
         }
     }
 
     public override void OnPlayerTriggerExit(VRCPlayerApi player)
     {
-        Debug.Log(gameObject.activeInHierarchy);
         base.OnPlayerTriggerExit(player);
         int playerID = player.playerId;
 
         if (m_currentControlledPlayerID.Contains(playerID))
         {
-
             m_currentControlledPlayerID.Remove(playerID);
+        }
+        if (m_currentBoosterState)
+        {
+            SetPlayerVoice(player, false);
+        }
+    }
+
+    private void SetPlayerVoice(VRCPlayerApi player, bool isTurnBoosterOn)
+    {
+        if (player.IsValid())
+        {
+            if (isTurnBoosterOn)
+            {
+                Debug.Log($"[Player ID: {player.playerId}] Voice Boosted");
+                player.SetVoiceGain(40);
+                player.SetVoiceDistanceFar(10000);
+            }
+            else
+            {
+                Debug.Log($"[Player ID: {player.playerId}] Voice Normal");
+                player.SetVoiceGain(15);
+                player.SetVoiceDistanceFar(25);
+            }
         }
 
     }
 
     void Update()
     {
-        //Debug.Log(gameObject.activeInHierarchy);
-        //RaycastHit[] playerInBoosterArea = Physics.SphereCastAll(transform.position, m_boosterRadius, Vector3.up, Mathf.Infinity, m_areaLayerMask);
-        //foreach (var player in playerInBoosterArea)
-        //{
-        //    Debug.Log(player);
-        //}
+        
     }
 
 
-#if !COMPILER_UDONSHARP && UNITY_EDITOR
+//#if !COMPILER_UDONSHARP && UNITY_EDITOR
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, m_boosterRadius);
-    }
-#endif
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.DrawWireSphere(transform.position, m_boosterRadius);
+//    }
+//#endif
 }

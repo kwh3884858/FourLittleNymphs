@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3206401528064528306
 Transform:
   m_ObjectHideFlags: 0
@@ -55,10 +55,10 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 3206401528064528307}
-  m_boosterRadius: 5
-  m_areaLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  m_currentBoosterState: 0
+  m_currentControlledPlayerID:
+    _values: []
+  _json: 
 --- !u!114 &3206401528064528307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,12 +322,12 @@ MonoBehaviour:
   Yodo_HapticDuration: 0.2
   Yodo_SwitchOffObject: {fileID: 6040931625310150708}
   Yodo_SwitchOnObject: {fileID: 6040931625310150710}
-  Yodo_ToggleTargetObject:
-  - {fileID: 3206401528064528304}
+  Yodo_ToggleTargetObject: []
   Yodo_DefaultStatus: 0
-  Yodo_IsGlobal: 0
+  Yodo_IsGlobal: 1
   Yodo_InteractiveInVR: 0
-  Yodo_SendCustomEventTarget: []
+  Yodo_SendCustomEventTarget:
+  - {fileID: 3206401528064528304}
   CustomEventNames: 'public void Yodo_HapticSwitchTriggered(){}
 
     public void
