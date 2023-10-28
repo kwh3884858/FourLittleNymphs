@@ -28,14 +28,17 @@ public class VoiceBooster : UdonSharpBehaviour
 
     public override void OnPreSerialization()
     {
-        if (VRCJson.TrySerializeToJson(m_currentControlledPlayerID, JsonExportType.Minify, out DataToken result))
+        if (Networking.IsMaster)
         {
-            _json = result.String;
-            Debug.Log(_json);
-        }
-        else
-        {
-            Debug.LogError(result.ToString());
+            if (VRCJson.TrySerializeToJson(m_currentControlledPlayerID, JsonExportType.Minify, out DataToken result))
+            {
+                _json = result.String;
+                Debug.Log(_json);
+            }
+            else
+            {
+                Debug.LogError(result.ToString());
+            }
         }
     }
 
